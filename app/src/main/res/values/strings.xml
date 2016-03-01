@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Minhas Notas</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="nova_materia">Nova Materia</string>
+    <string name="ver_materias">Ver Materias</string>
+    <string name="nova_falta">Nova Falta</string>
+    <string name="disciplina">Disciplina</string>
+    <string name="semestre">Semestre</string>
+    <string name="professor">Nome do Professor</string>
+    <string name="carga_hr">Carga Horaria</string>
+    <string name="materias">Materias</string>
+    <string name="notas">Notas</string>
+    <string name="ver_notas">Ver Notas</string>
+
+    <string name="um">1</string>
+    <string name="dois">2</string>
+    <string name="tres">3</string>
+    <string name="quatro">4</string>
+
+    <string name="confirma">Confirma</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="voltar">Voltar</string>
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
+</resources>

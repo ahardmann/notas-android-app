@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:stretchColumns="0,1">
+
+    <LinearLayout
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/nova_materia"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TableRow>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/disciplina"/>
+    </TableRow>
+
+    <EditText
+        android:id="@+id/disciplina"
+        android:inputType="text"/>
+
+    <TableRow>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/semestre"/>
+    </TableRow>
+
+    <EditText
+        android:id="@+id/semestre"
+        android:inputType="text"/>
+
+    <TableRow>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/professor"/>
+    </TableRow>
+
+    <EditText
+        android:id="@+id/professor"
+        android:inputType="text"/>
+
+    <TableRow>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/carga_hr"/>
+    </TableRow>
+
+    <EditText
+        android:id="@+id/carga_hr"
+        android:inputType="text"/>
+
+    <TableRow
+        android:layout_marginTop="10dp">
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/cancelar"
+            android:background="@color/buttonCancel"
+            android:text="@string/cancelar"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/salvar"
+            android:background="@color/buttonConfirm"
+            android:text="@string/salvar"/>
+    </TableRow>
+
+</TableLayout>
