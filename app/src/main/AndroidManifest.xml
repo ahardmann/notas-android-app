@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadMateriaActivity"></activity>
-        <activity android:name=".MateriasListActivity"></activity>
+        <activity android:name=".materias.CadMateriaActivity"></activity>
+        <activity android:name=".materias.MateriasListActivity"></activity>
     </application>
 
 </manifest>
