@@ -18,6 +18,12 @@
     <string name="tres">3</string>
     <string name="quatro">4</string>
 
+    <string name="registro_salvo">Salvo</string>
+    <string name="erro_salvar">Erro ao salvar</string>
+
+    <string name="confirmacao_exclusao">Excluir o item selecionado?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
     <string name="confirma">Confirma</string>
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>

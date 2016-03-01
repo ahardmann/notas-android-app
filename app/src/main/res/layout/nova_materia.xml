@@ -87,6 +87,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:id="@+id/salvar"
+            android:onClick="salvarMateria"
             android:background="@color/buttonConfirm"
             android:text="@string/salvar"/>
     </TableRow>
