@@ -1,14 +1,13 @@
 package com.notas.faculdade.minhasnotas.materias;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.SharedPreferences;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
@@ -22,17 +21,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MateriasListActivity extends ListActivity implements  AdapterView.OnItemClickListener {
+public class MateriasListActivity extends ListActivity implements  AdapterView.OnItemClickListener, DialogInterface.OnClickListener {
 
     private List<Map<String, Object>> materias;
     private DatabaseHelper helper;
+    private AlertDialog alertDialog;
+    private int materiaSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         helper = new DatabaseHelper(this);
-//        SharedPreferences preferencias  = PreferenceManager.getDefaultSharedPreferences(this);
 
         String[] de = { "disciplina", "semestre", "professor", "carga_hr" };
         int[] para = { R.id.disciplina, R.id.semestre, R.id.professor, R.id.carga_hr};
@@ -42,36 +42,48 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
 
-        registerForContextMenu(getListView());
+        this.alertDialog = criaAlertDialog();
     }
 
+
+    //list
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Map<String, Object> map = materias.get(position);
-        String disciplina = (String) map.get("disciplina");
-        String mensagem = "Materia selecionada: " + disciplina;
-        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+        this.materiaSelecionada = position;
+        alertDialog.show();
     }
 
+    //dialog
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_materias, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.remover) {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
-                    .getMenuInfo();
-            materias.remove(info.position);
-
-            //redesenhar as linhas da list
-            getListView().invalidateViews();
-            return true;
+    public void onClick(DialogInterface dialog, int which) {
+        switch (which){
+            case 0:
+//                startActivity(new Intent(this, NotasActivity.class));
+                break;
+            case 1:
+//                startActivity(new Intent(this, FaltasActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(this,CadMateriaActivity.class));
+                break;
+            case 3:
+                materias.remove(this.materiaSelecionada);
+                getListView().invalidateViews();
+                break;
         }
-        return super.onContextItemSelected(item);
+    }
+
+    //itens do dialog
+    private AlertDialog criaAlertDialog() {
+        final CharSequence[] items = {
+                getString(R.string.notas),
+                getString(R.string.nova_falta),
+                getString(R.string.editar),
+                getString(R.string.excluir) };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.opcoes);
+        builder.setItems(items, this);
+        return builder.create();
     }
 
     private List<Map<String, Object>> listarMaterias(){
@@ -113,6 +125,14 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
         cursor.close();
 
         return materias;
+    }
+
+    private int getNumFaltas(SQLiteDatabase db, String id){
+        Cursor cursor = db.rawQuery("SELECT faltas FROM materias WHERE _id = ?", new String[]{id});
+        cursor.moveToFirst();
+        int faltas = cursor.getInt(0);
+        cursor.close();
+        return faltas;
     }
 
 }

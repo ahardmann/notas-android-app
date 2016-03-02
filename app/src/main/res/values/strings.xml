@@ -22,6 +22,7 @@
     <string name="erro_salvar">Erro ao salvar</string>
 
     <string name="confirmacao_exclusao">Excluir o item selecionado?</string>
+    <string name="opcoes">Opções</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="confirma">Confirma</string>
