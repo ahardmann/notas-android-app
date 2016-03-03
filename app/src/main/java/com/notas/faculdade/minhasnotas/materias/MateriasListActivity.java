@@ -4,15 +4,14 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 
 import com.notas.faculdade.minhasnotas.R;
-import com.notas.faculdade.minhasnotas.db.DatabaseHelper;
+import com.notas.faculdade.minhasnotas.dao.AppDAO;
+import com.notas.faculdade.minhasnotas.domain.Materia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,26 +21,28 @@ import java.util.Map;
 public class MateriasListActivity extends ListActivity implements  AdapterView.OnItemClickListener, DialogInterface.OnClickListener {
 
     private List<Map<String, Object>> materias;
-    private DatabaseHelper helper;
     private AlertDialog alertDialog, confirmDialog;
     private int materiaSelecionada;
+    private AppDAO dao;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        helper = new DatabaseHelper(this);
+        dao = new AppDAO(this);
+        this.alertDialog = criaAlertDialog();
+        this.confirmDialog = dialogConfirmacao();
 
-        String[] de = { "disciplina", "semestre", "professor", "carga_hr" };
-        int[] para = { R.id.disciplina, R.id.semestre, R.id.professor, R.id.carga_hr};
+        String[] de = { "disciplina", "semestre", "professor"};
+        int[] para = { R.id.disciplina, R.id.semestre, R.id.professor};
         SimpleAdapter adapter = new SimpleAdapter(this, listarMaterias()
                 , R.layout.materia_list, de, para);
 
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(this);
+            setListAdapter(adapter);
+            getListView().setOnItemClickListener(this);
 
-        this.alertDialog = criaAlertDialog();
-        this.confirmDialog = dialogConfirmacao();
+
     }
 
     //list
@@ -54,6 +55,7 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
     //dialog
     @Override
     public void onClick(DialogInterface dialog, int which) {
+        Long id = (Long) materias.get(materiaSelecionada).get("id");
         switch (which){
             case 0:
 //                startActivity(new Intent(this, NotasActivity.class));
@@ -62,13 +64,16 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
 //                startActivity(new Intent(this, FaltasActivity.class));
                 break;
             case 2:
+                intent = new Intent(this,CadMateriaActivity.class );
+//                intent.putExtra(Constantes.MATERIA_ID, id);
                 startActivity(new Intent(this, CadMateriaActivity.class));
                 break;
             case 3:
                 confirmDialog.show();
                 break;
             case DialogInterface.BUTTON_POSITIVE:
-                materias.remove(this.materiaSelecionada);
+                materias.remove(materiaSelecionada);
+                dao.removerMateria(Long.valueOf(id));
                 getListView().invalidateViews();
                 break;
             case DialogInterface.BUTTON_NEGATIVE:
@@ -100,52 +105,30 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
     }
 
     private List<Map<String, Object>> listarMaterias(){
-
-        SQLiteDatabase db = helper.getReadableDatabase();
-        String tabela = "materias";
-        String[] colunas = new String[]{"_id", "disciplina", "semestre",
-                "professor","carga_hr"};
-
-        String selecao = null;
-        String[] selecaoArgs = null;
-        String groupBy = null;
-        String having = null;
-        String orderBy = "semestre DESC";
-
-        Cursor cursor = db.query(tabela, colunas, selecao, selecaoArgs, groupBy, having, orderBy);
-        cursor.moveToFirst();
-
         materias = new ArrayList<Map<String, Object>>();
+        List<Materia> listaMateria = dao.listarMaterias();
 
-        for (int i = 0; i < cursor.getCount(); i++){
+        for(Materia materia : listaMateria){
             Map<String, Object> item = new HashMap<String, Object>();
 
-            String id = cursor.getString(0);
-            String disciplina = cursor.getString(1);
-            int semestre = cursor.getInt(2);
-            String profesor = cursor.getString(3);
-            int carga_hr = cursor.getInt(4);
-
-            item.put("id", id);
-            item.put("disciplina", disciplina);
-            item.put("semestre", semestre);
-            item.put("professor", profesor);
-            item.put("carga_hr", carga_hr);
+            item.put("id", materia.getId());
+            item.put("semestre", materia.getSemestre());
+//            item.put("faltas", materia.getFaltas());
+            item.put("carga_hr", materia.getCarga_hr());
+            item.put("disciplina", materia.getDisciplina());
+            item.put("professor", materia.getProfessor());
 
             materias.add(item);
-            cursor.moveToNext();
         }
-        cursor.close();
 
         return materias;
     }
 
-    private int getNumFaltas(SQLiteDatabase db, String id){
-        Cursor cursor = db.rawQuery("SELECT faltas FROM materias WHERE _id = ?", new String[]{id});
-        cursor.moveToFirst();
-        int faltas = cursor.getInt(0);
-        cursor.close();
-        return faltas;
-    }
-
+//    private int getNumFaltas(SQLiteDatabase db, String id){
+//        Cursor cursor = db.rawQuery("SELECT faltas FROM materias WHERE _id = ?", new String[]{id});
+//        cursor.moveToFirst();
+//        int faltas = cursor.getInt(0);
+//        cursor.close();
+//        return faltas;
+//    }
 }

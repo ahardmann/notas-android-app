@@ -1,22 +1,23 @@
 package com.notas.faculdade.minhasnotas.materias;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.notas.faculdade.minhasnotas.Constantes;
 import com.notas.faculdade.minhasnotas.R;
-import com.notas.faculdade.minhasnotas.db.DatabaseHelper;
+import com.notas.faculdade.minhasnotas.dao.AppDAO;
+import com.notas.faculdade.minhasnotas.domain.Materia;
 
 public class CadMateriaActivity extends AppCompatActivity {
 
     private EditText disciplina, professor, semestre, carga_hr;
-    private DatabaseHelper helper;
+    private Long id;
+    private AppDAO dao;
+    private long resultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +29,33 @@ public class CadMateriaActivity extends AppCompatActivity {
         semestre = (EditText) findViewById(R.id.semestre);
         carga_hr = (EditText) findViewById(R.id.carga_hr);
 
-        helper = new DatabaseHelper(this);
+        dao = new AppDAO(this);
+        id = getIntent().getLongExtra(Constantes.MATERIA_ID, -1);
+
+//        if(id != -1){
+//            editar();
+//        }
     }
 
     public void salvarMateria(View view){
-        String TAG = "teste";
+        Materia materia = new Materia();
+        materia.setDisciplina(disciplina.getText().toString());
+        materia.setProfessor(professor.getText().toString());
+        materia.setSemestre(Integer.valueOf(semestre.getText().toString()));
+        materia.setCarga_hr(Integer.valueOf(carga_hr.getText().toString()));
+        materia.setFaltas(0);
 
-        SQLiteDatabase db = helper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("disciplina", disciplina.getText().toString());
-        values.put("professor", professor.getText().toString());
-        values.put("semestre", semestre.getText().toString());
-        values.put("carga_hr", carga_hr.getText().toString());
-        values.put("faltas", "0".toString());
-
-        long resultado = db.insert("materias", null, values);
+        if(id == -1){
+            resultado = dao.inserirMateria(materia);
+//            new Task().execute(materia);
+        }   else{
+//            resultado = dao.atualizar(materia);
+        }
         if(resultado != -1 ){
             Toast.makeText(this, getString(R.string.registro_salvo),
                     Toast.LENGTH_SHORT).show();
-
-            Log.i(TAG, "salvarMateria: " + values);
             startActivity(new Intent(this, MateriasListActivity.class));
-
         }else{
             Toast.makeText(this, getString(R.string.erro_salvar),
                     Toast.LENGTH_SHORT).show();
@@ -59,7 +64,15 @@ public class CadMateriaActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        helper.close();
+        dao.close();
         super.onDestroy();
     }
+
+//    private class Task extends AsyncTask<Materia, Void, Void> {
+//        @Override
+//        protected Void doInBackground(Materia... materias) {
+//            Materia materia = materias[0];
+//            return null;
+//        }
+//    }
 }
