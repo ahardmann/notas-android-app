@@ -1,4 +1,4 @@
-package com.notas.faculdade.minhasnotas.materias;
+package com.notas.faculdade.minhasnotas;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 
+import com.notas.faculdade.minhasnotas.CadMateriaActivity;
 import com.notas.faculdade.minhasnotas.R;
 import com.notas.faculdade.minhasnotas.dao.AppDAO;
 import com.notas.faculdade.minhasnotas.domain.Materia;
@@ -65,8 +66,8 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
                 break;
             case 2:
                 intent = new Intent(this,CadMateriaActivity.class );
-//                intent.putExtra(Constantes.MATERIA_ID, id);
-                startActivity(new Intent(this, CadMateriaActivity.class));
+                intent.putExtra(Constantes.MATERIA_ID, id);
+                startActivity(intent);
                 break;
             case 3:
                 confirmDialog.show();
