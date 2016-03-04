@@ -13,22 +13,14 @@
         android:src="@drawable/titulo"/>
 
     <Button
+        style="@style/buttonIni"
         android:id="@+id/nova_materia"
-        android:background="@color/buttonColor"
-        android:gravity="center"
-        android:layout_marginTop="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:onClick="selecionarOpcao"
         android:text="@string/nova_materia"/>
 
     <Button
+        style="@style/buttonIni"
         android:id="@+id/minhas_materias"
-        android:background="@color/buttonColor"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:onClick="selecionarOpcao"
         android:text="@string/ver_materias"/>
 

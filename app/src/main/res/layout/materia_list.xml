@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
+    android:gravity="center"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -13,16 +14,13 @@
         android:layout_marginLeft="30dp"
         android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textStyle"
             android:id="@+id/disciplina"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textStyle"
             android:id="@+id/semestre"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textStyle"
             android:id="@+id/professor"/>
     </LinearLayout>
 
