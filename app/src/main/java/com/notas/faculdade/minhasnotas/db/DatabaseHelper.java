@@ -9,7 +9,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String BANCO_DADOS = "MinhasNotas";
     private static final int VERSAO = 1;
-//    id,semestre,faltas,carga,disc,prof
     public static class Materia{
         public static final String TABELA = "MATERIAS";
         public static final String _ID= "_ID";
@@ -51,7 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE MATERIAS (_ID INTEGER PRIMARY KEY autoincrement,"+
+        db.execSQL("CREATE TABLE MATERIAS (_ID INTEGER PRIMARY KEY,"+
                 "SEMESTRE INTEGER, FALTAS INTEGER, CARGA_HR INTEGER," +
                 " DISCIPLINA TEXT, PROFESSOR TEXT);");
 
