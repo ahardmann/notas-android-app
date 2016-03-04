@@ -52,17 +52,17 @@ public class AppDAO {
         return materias;
     }
 
-//    public Materia buscaPorId(Integer id){
-//        Cursor cursor = getDb().query(DatabaseHelper.Materia.TABELA, DatabaseHelper.Materia.COLUNAS
-//                , DatabaseHelper.Materia._ID +" = ?", new String[]{id.toString()}, null, null, null);
-//
-//        if(cursor.moveToNext()){
-//            Materia materia = criarMateria(cursor);
-//            cursor.close();
-//            return materia;
-//        }
-//        return null;
-//    }
+    public Materia buscaPorId(Long id){
+        Cursor cursor = getDb().query(DatabaseHelper.Materia.TABELA, DatabaseHelper.Materia.COLUNAS
+                , DatabaseHelper.Materia._ID +" = ?", new String[]{id.toString()}, null, null, null);
+
+        if(cursor.moveToNext()){
+            Materia materia = criarMateria(cursor);
+            cursor.close();
+            return materia;
+        }
+        return null;
+    }
 
     public long inserirMateria(Materia materia){
         ContentValues values = new ContentValues();
@@ -81,6 +81,17 @@ public class AppDAO {
         int remover = getDb().delete(DatabaseHelper.Materia.TABELA, whereClause, whereArgs);
 
         return remover > 0;
+    }
+
+    public long atualizarMateria (Materia materia){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.Materia.DISCIPLINA, materia.getDisciplina());
+        values.put(DatabaseHelper.Materia.SEMESTRE, materia.getSemestre());
+        values.put(DatabaseHelper.Materia.PROFESSOR, materia.getProfessor());
+        values.put(DatabaseHelper.Materia.CARGA_HR, materia.getCarga_hr());
+        values.put(DatabaseHelper.Materia.FALTAS, materia.getFaltas());
+        return getDb().update(DatabaseHelper.Materia.TABELA,values,DatabaseHelper.Materia._ID + " = ?"
+                , new String[]{materia.getId().toString()});
     }
 
     private Materia criarMateria(Cursor cursor){
