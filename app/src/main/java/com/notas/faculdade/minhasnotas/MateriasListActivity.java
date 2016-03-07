@@ -40,10 +40,8 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
         SimpleAdapter adapter = new SimpleAdapter(this, listarMaterias()
                 , R.layout.materia_list, de, para);
 
-            setListAdapter(adapter);
-            getListView().setOnItemClickListener(this);
-
-
+        setListAdapter(adapter);
+        getListView().setOnItemClickListener(this);
     }
 
     //list
@@ -58,17 +56,25 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
     public void onClick(DialogInterface dialog, int which) {
         Long id = (Long) materias.get(materiaSelecionada).get("id");
         switch (which){
+            //notas
             case 0:
-//                startActivity(new Intent(this, NotasActivity.class));
+                intent = new Intent(this, NotasActivity.class );
+                intent.putExtra(Constantes.MATERIA_ID, id);
+                startActivity(intent);
                 break;
+            //faltas
             case 1:
-//                startActivity(new Intent(this, FaltasActivity.class));
+                intent = new Intent(this, FaltasActivity.class );
+                intent.putExtra(Constantes.MATERIA_ID, id);
+                startActivity(intent);
                 break;
+            //editar
             case 2:
                 intent = new Intent(this,CadMateriaActivity.class );
                 intent.putExtra(Constantes.MATERIA_ID, id);
                 startActivity(intent);
                 break;
+            //excluir
             case 3:
                 confirmDialog.show();
                 break;
@@ -114,7 +120,6 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
 
             item.put("id", materia.getId());
             item.put("semestre", materia.getSemestre());
-//            item.put("faltas", materia.getFaltas());
             item.put("carga_hr", materia.getCarga_hr());
             item.put("disciplina", materia.getDisciplina());
             item.put("professor", materia.getProfessor());
@@ -124,12 +129,4 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
 
         return materias;
     }
-
-//    private int getNumFaltas(SQLiteDatabase db, String id){
-//        Cursor cursor = db.rawQuery("SELECT faltas FROM materias WHERE _id = ?", new String[]{id});
-//        cursor.moveToFirst();
-//        int faltas = cursor.getInt(0);
-//        cursor.close();
-//        return faltas;
-//    }
 }
