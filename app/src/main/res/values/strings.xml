@@ -13,6 +13,8 @@
     <string name="notas">Notas</string>
     <string name="ver_notas">Ver Notas</string>
 
+    <string name="campoVazio">O campo não pode estar vazio!</string>
+
     <string name="um">1</string>
     <string name="dois">2</string>
     <string name="tres">3</string>
@@ -20,14 +22,14 @@
 
     <string name="registro_salvo">Salvo</string>
     <string name="erro_salvar">Erro ao salvar</string>
+    <string name="reprovado">Reprovado por falta</string>
 
-    <string name="confirmacao_exclusao">Excluir o item selecionado?</string>
+    <string name="confirmacao_exclusao">Deseja excluir o item selecionado?</string>
     <string name="opcoes">Opções</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="confirma">Confirma</string>
     <string name="salvar">Salvar</string>
-    <string name="voltar">Voltar</string>
     <string name="editar">Editar</string>
     <string name="excluir">Excluir</string>
 </resources>
