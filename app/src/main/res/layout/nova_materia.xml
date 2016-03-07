@@ -66,12 +66,11 @@
         <TableRow
             android:layout_marginTop="10dp">
             <Button
-                style="@style/buttonCad"
-                android:id="@+id/cancelar"
-                android:background="@color/buttonCancel"
-                android:text="@string/cancelar"/>
-            <Button
-                style="@style/buttonCad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                android:gravity="center"
                 android:id="@+id/salvar"
                 android:onClick="salvarMateria"
                 android:background="@color/buttonConfirm"
