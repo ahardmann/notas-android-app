@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,30 +37,46 @@ public class CadMateriaActivity extends AppCompatActivity {
     }
 
     public void salvarMateria(View view){
-        Materia materia = new Materia();
-        materia.setDisciplina(disciplina.getText().toString());
-        materia.setProfessor(professor.getText().toString());
-        materia.setSemestre(Integer.valueOf(semestre.getText().toString()));
-        materia.setCarga_hr(Integer.valueOf(carga_hr.getText().toString()));
-        materia.setFaltas(0);
+        String disciplinaNotNull = disciplina.getText().toString().trim();
+        String professorNotNull= professor.getText().toString().trim();
+        String semestreNotNull= semestre.getText().toString().trim();
+        String carga_hrNotNull = carga_hr.getText().toString().trim();
 
-        long resultado;
-
-        if(id == -1){
-            resultado = dao.inserirMateria(materia);
-            new Task().execute(materia);
-        }   else{
-            materia.setId(id);
-            resultado = dao.atualizarMateria(materia);
-        }
-
-        if(resultado != -1 ){
-            Toast.makeText(this, getString(R.string.registro_salvo),
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MateriasListActivity.class));
+        if(TextUtils.isEmpty(disciplinaNotNull)){
+            disciplina.setError(getText(R.string.campoVazio));
+        }if (TextUtils.isEmpty(professorNotNull)){
+            professor.setError(getText(R.string.campoVazio));
+        }if(TextUtils.isEmpty(semestreNotNull)){
+            semestre.setError(getText(R.string.campoVazio));
+        }if(TextUtils.isEmpty(carga_hrNotNull)){
+            carga_hr.setError(getText(R.string.campoVazio));
         }else{
-            Toast.makeText(this, getString(R.string.erro_salvar),
-                    Toast.LENGTH_SHORT).show();
+            Materia materia = new Materia();
+            materia.setDisciplina(disciplinaNotNull);
+            materia.setProfessor(professorNotNull);
+            materia.setSemestre(Integer.valueOf(semestreNotNull));
+            materia.setCarga_hr(Integer.valueOf(carga_hrNotNull));
+            materia.setFaltas(0);
+
+            long resultado;
+
+            if(id == -1){
+                resultado = dao.inserirMateria(materia);
+                new Task().execute(materia);
+            }   else{
+                materia.setId(id);
+                resultado = dao.atualizarMateria(materia);
+            }
+
+            if(resultado != -1 ){
+                Toast.makeText(this, getString(R.string.registro_salvo),
+                        Toast.LENGTH_SHORT).show();
+                clear();
+                startActivity(new Intent(this, MateriasListActivity.class));
+            }else{
+                Toast.makeText(this, getString(R.string.erro_salvar),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -69,6 +86,13 @@ public class CadMateriaActivity extends AppCompatActivity {
         semestre.setText(String.valueOf(materia.getSemestre()));
         professor.setText(materia.getProfessor());
         carga_hr.setText(String.valueOf(materia.getCarga_hr()));
+    }
+
+    public void clear(){
+        disciplina.setText("");
+        professor.setText("");
+        semestre.setText("");
+        carga_hr.setText("");
     }
 
     @Override
