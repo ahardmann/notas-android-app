@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".CadMateriaActivity"></activity>
         <activity android:name=".MateriasListActivity"></activity>
+        <activity android:name=".NotasActivity"></activity>
+        <activity android:name=".FaltasActivity"></activity>
     </application>
 
 </manifest>
