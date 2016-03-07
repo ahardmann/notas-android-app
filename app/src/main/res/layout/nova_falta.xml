@@ -16,60 +16,30 @@
         android:textStyle="bold" />
 
     <CheckBox
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
+        style="@style/checkBox"
         android:id="@+id/um"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/um"/>
 
     <CheckBox
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
+        style="@style/checkBox"
         android:id="@+id/dois"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/dois"/>
 
     <CheckBox
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
+        style="@style/checkBox"
         android:id="@+id/tres"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/tres"/>
 
     <CheckBox
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
+        style="@style/checkBox"
         android:id="@+id/quatro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/quatro"/>
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <TableRow android:layout_marginTop="40dp">
-            <Button
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="@string/cancelar"
-                android:background="@color/buttonCancel"/>
+    <Button
+        style="@style/confirmButton"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/confirma"
+        android:onClick="salvarFalta"/>
 
-            <Button
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="@string/confirma"
-                android:background="@color/buttonConfirm"/>
-        </TableRow>
-    </TableLayout>
 </LinearLayout>
