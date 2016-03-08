@@ -14,6 +14,11 @@
     <string name="notas">Notas</string>
     <string name="ver_notas">Ver Notas</string>
 
+    <string name="qt">Nota Qt.</string>
+    <string name="ql">Nota Ql.</string>
+    <string name="med">Media</string>
+    <string name="medf">Media Final</string>
+
     <string name="campoVazio">O campo não pode estar vazio!</string>
 
     <string name="um">1</string>

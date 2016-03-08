@@ -51,4 +51,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="notasInput">
+        <item name="android:layout_width">2dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+    </style>
+
 </resources>

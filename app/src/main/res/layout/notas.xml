@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="3sp"
+            android:stretchColumns="0,1,2">
+
+            <TableRow>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/qt"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/ql"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/med"/>
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/qt1"/>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/ql1"/>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/media1"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/qt"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/ql"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/med"/>
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/qt2"/>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/ql2"/>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/media2"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/qt"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/ql"/>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/med"/>
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/qt3"/>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/ql3"/>
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/media3"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    style="@style/textStyle"
+                    android:text="@string/medf"/>
+
+                <EditText
+                    style="@style/notasInput"
+                    android:id="@+id/mediaf"/>
+            </TableRow>
+            <Button
+                style="@style/confirmButton"
+                android:layout_marginTop="40dp"
+                android:onClick="salvarNota"
+                android:text="@string/salvar"/>
+        </TableLayout>
+
+    </LinearLayout>
+</ScrollView>
