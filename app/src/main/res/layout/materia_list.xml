@@ -4,24 +4,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
-    android:gravity="center"
     android:fitsSystemWindows="true">
 
-    <LinearLayout
-        android:id="@id/android:list"
+    <TableLayout
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:orientation="vertical">
-        <TextView
-            style="@style/textStyle"
-            android:id="@+id/disciplina"/>
-        <TextView
-            style="@style/textStyle"
-            android:id="@+id/semestre"/>
-        <TextView
-            style="@style/textStyle"
-            android:id="@+id/professor"/>
-    </LinearLayout>
+        android:orientation="vertical"
+        android:padding="3sp"
+        android:stretchColumns="0,1,2,3">
+
+        <TableRow>
+            <TextView
+                style="@style/textStyle"
+                android:text="@string/disciplina"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:id="@+id/disciplina"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/textStyle"
+                android:text="@string/professor"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:id="@+id/professor"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/textStyle"
+                android:text="@string/semestre"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:id="@+id/semestre"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:text="@string/faltas"/>
+
+            <TextView
+                style="@style/textStyle"
+                android:id="@+id/faltas"/>
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

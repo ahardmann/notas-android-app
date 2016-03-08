@@ -35,8 +35,8 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
         this.alertDialog = criaAlertDialog();
         this.confirmDialog = dialogConfirmacao();
 
-        String[] de = { "disciplina", "semestre", "professor"};
-        int[] para = { R.id.disciplina, R.id.semestre, R.id.professor};
+        String[] de = { "disciplina", "semestre", "professor", "faltas"};
+        int[] para = { R.id.disciplina, R.id.semestre, R.id.professor, R.id.faltas};
         SimpleAdapter adapter = new SimpleAdapter(this, listarMaterias()
                 , R.layout.materia_list, de, para);
 
@@ -123,6 +123,7 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
             item.put("carga_hr", materia.getCarga_hr());
             item.put("disciplina", materia.getDisciplina());
             item.put("professor", materia.getProfessor());
+            item.put("faltas", materia.getFaltas());
 
             materias.add(item);
         }
