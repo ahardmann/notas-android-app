@@ -54,24 +54,24 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
     //dialog
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        Long id = (Long) materias.get(materiaSelecionada).get("id");
+        Long idMateria = (Long) materias.get(materiaSelecionada).get("id");
         switch (which){
             //notas
             case 0:
                 intent = new Intent(this, NotasActivity.class );
-                intent.putExtra(Constantes.MATERIA_ID, id);
+                intent.putExtra(Constantes.MATERIA_ID, idMateria);
                 startActivity(intent);
                 break;
             //faltas
             case 1:
                 intent = new Intent(this, FaltasActivity.class );
-                intent.putExtra(Constantes.MATERIA_ID, id);
+                intent.putExtra(Constantes.MATERIA_ID, idMateria);
                 startActivity(intent);
                 break;
             //editar
             case 2:
                 intent = new Intent(this,CadMateriaActivity.class );
-                intent.putExtra(Constantes.MATERIA_ID, id);
+                intent.putExtra(Constantes.MATERIA_ID, idMateria);
                 startActivity(intent);
                 break;
             //excluir
@@ -80,7 +80,7 @@ public class MateriasListActivity extends ListActivity implements  AdapterView.O
                 break;
             case DialogInterface.BUTTON_POSITIVE:
                 materias.remove(materiaSelecionada);
-                dao.removerMateria(Long.valueOf(id));
+                dao.removerMateria(Long.valueOf(idMateria));
                 getListView().invalidateViews();
                 break;
             case DialogInterface.BUTTON_NEGATIVE:

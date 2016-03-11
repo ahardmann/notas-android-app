@@ -1,7 +1,6 @@
 package com.notas.faculdade.minhasnotas;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -62,7 +61,6 @@ public class CadMateriaActivity extends AppCompatActivity {
 
             if(id == -1){
                 resultado = dao.inserirMateria(materia);
-                new Task().execute(materia);
             }   else{
                 materia.setId(id);
                 resultado = dao.atualizarMateria(materia);
@@ -73,6 +71,7 @@ public class CadMateriaActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 clear();
                 startActivity(new Intent(this, MateriasListActivity.class));
+                finish();
             }else{
                 Toast.makeText(this, getString(R.string.erro_salvar),
                         Toast.LENGTH_SHORT).show();
@@ -99,13 +98,5 @@ public class CadMateriaActivity extends AppCompatActivity {
     protected void onDestroy() {
         dao.close();
         super.onDestroy();
-    }
-
-    private class Task extends AsyncTask<Materia, Void, Void> {
-        @Override
-        protected Void doInBackground(Materia... materias) {
-            Materia materia = materias[0];
-            return null;
-        }
     }
 }
